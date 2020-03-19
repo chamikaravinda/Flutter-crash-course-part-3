@@ -18,6 +18,34 @@ class _QuoteListState extends State<QuoteList> {
   Quote(text:'It always seems impossible until it’s done',author: 'Unkon')
   ];
 
+  Widget quoteTemplate(quote){
+    return Card(
+      margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(
+                quote.text,
+                style:TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.grey[800]
+                )
+            ),
+            SizedBox(height: 6.0,),
+            Text(
+                quote.author,
+                style:TextStyle(
+                    fontSize: 14.0,
+                    color: Colors.grey[600]
+                )
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +56,7 @@ class _QuoteListState extends State<QuoteList> {
         backgroundColor: Colors.redAccent,
       ),
       body: Column(
-        children: quoests.map((quoest) => Text('${quoest.text} - ${quoest.author}')).toList(),
+        children: quoests.map((quoest) => quoteTemplate(quoest)).toList(),
       ),
     );
   }
